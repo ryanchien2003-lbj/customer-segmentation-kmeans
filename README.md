@@ -1,31 +1,26 @@
-# Product-Segmentation-Case-Study/
-This is a data analysis project using unsupervised learning model to cluster customers based on their income and spending behavior.
+# Customer Segmentation with K-Means
 
+**Four customer segments emerged from 200 mall customer records.** The largest group contained 90 customers and had the highest average spending score. Another group had the highest average income and the lowest spending score.
 
-#  Files in this Repository
-**Mall_Customers dataset.xlsx**: A dataset of customers with columns of age, sex, income, and spending score (from 0-100).
-**ProductSegmentation (1).ipynb**: Main Jupyter Notebook containing the full analysis.
+![Box plots of age, annual income, and spending score for the four clusters.](customer-cluster-profiles.png)
 
-# Analysis Workflow
-1. **Exploratory Data Analysis (EDA)**: Basic information of the dataset, including mean, standard deviation, maximum, and minimum.
-2. **Data Distribution Check**: Building boxplots and histograms to observe the data, checking for skewness or outliers.
-3. **Category Relationships**: Using line and bar charts to observe the relation between each category.
-4. **Elbow Method**: Defining a range of cluster numbers to try (from 1 up to 8 clusters) and plotting the elbow curve.
-5. **Silhouette Analysis**: Plotting silhouette scores for different values of $k$ to find the most optimal K-Means.
-6. **Labeling & Highlighting**: Adding labels for each column and highlighting the maximum values.
-7. **Cluster Distribution**: Creating boxplots to visualize the distribution of scaled numerical variables across different K-Means clusters.
-8. **Insights**: The y-axis shows the distribution of the data, and the boxplots show the relation of mean values to each cluster in each category.
+## Segment profiles
 
+| Cluster | Customers | Avg. age | Avg. annual income ($K) | Avg. spending score | Campaign to test |
+| --- | ---: | ---: | ---: | ---: | --- |
+| 0 | 47 | 55.6 | 54.4 | 48.9 | Loyalty rewards |
+| 1 | 39 | 39.9 | 86.1 | 19.4 | A curated premium offer |
+| 2 | 90 | 28.5 | 61.7 | 71.8 | Early access to new products |
+| 3 | 24 | 43.1 | 27.0 | 22.1 | Value bundles or targeted discounts |
 
-# Business Insights
-**Cluster 0 (Older Age, Average Income, Medium Spenders)**:
-Focus on building loyalty, emphasizing reliability and comfort value. Campaigns should use traditional channels, and products can highlight practical durability, stability, and family-oriented benefits.
+Spending score is a dataset score on a 1–100 scale. The suggested campaigns are hypotheses to test.
 
-**Cluster 1 (Middle Age, High Income, Low Spenders)**:
-Focus on exclusivity, prestige, unique features, and the investment or functional value of products rather than price. Introduce premium, high-quality, or durable goods that appeal to a pragmatic yet affluent mindset.
+## Method
 
-**Cluster 2 (Younger Age, Moderate to High Income, Highest Spenders)**:
-Focus on continuous innovation by introducing high-end, trendy, and fashionable products. Since they have high spending enthusiasm, marketing campaigns can leverage digital channels, social media, and experiential engagement.
+The notebook standardizes age, annual income, and spending score before fitting K-Means. It compares candidate solutions using elbow and silhouette diagnostics. The final analysis profiles four clusters, although six scored highest in the saved silhouette sweep.
 
-**Cluster 3 (Middle-Aged to Senior, Lowest Income, Low Spenders)**:
-Focus on value proposition, affordability, and essential utility. Promote through clear price comparisons, cost-effectiveness, and practical discounts to attract budget-conscious consumers.
+## How to reproduce
+
+1. Open [customer_segmentation.ipynb](customer_segmentation.ipynb) and download [the workbook](Mall_Customers%20dataset.xlsx) into the same directory.
+2. Install the notebook dependencies with `pip install numpy pandas matplotlib seaborn scikit-learn scipy yellowbrick openpyxl`.
+3. Skip the `!pip nb_black` and Google Drive mount cells. Replace the original CSV import with `data = pd.read_excel("Mall_Customers dataset.xlsx")`, then run the analysis cells in order. The notebook also contains the saved charts and cluster summaries.
