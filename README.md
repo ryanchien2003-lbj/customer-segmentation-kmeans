@@ -17,10 +17,12 @@ Spending score is a dataset score on a 1–100 scale. The suggested campaigns ar
 
 ## Method
 
-The notebook standardizes age, annual income, and spending score before fitting K-Means. It compares candidate solutions using elbow and silhouette diagnostics. The final analysis profiles four clusters, although six scored highest in the saved silhouette sweep.
+The notebook standardizes age, annual income, and spending score before fitting K-Means. It compares candidate solutions using elbow and silhouette diagnostics with a fixed random seed. The final analysis profiles four clusters. Compare the silhouette scores when running the notebook to assess whether a finer segmentation would be useful.
 
 ## How to reproduce
 
 1. Open [customer_segmentation.ipynb](customer_segmentation.ipynb) and download [the workbook](Mall_Customers%20dataset.xlsx) into the same directory.
-2. Install the notebook dependencies with `pip install numpy pandas matplotlib seaborn scikit-learn scipy yellowbrick openpyxl`.
-3. Skip the `!pip nb_black` and Google Drive mount cells. Replace the original CSV import with `data = pd.read_excel("Mall_Customers dataset.xlsx")`, then run the analysis cells in order. The notebook also contains the saved charts and cluster summaries.
+2. Install the notebook dependencies with `pip install -r requirements.txt`.
+3. Start Jupyter, open the notebook from the repository directory, and run all cells. The notebook loads the included Excel workbook directly. It generates charts and a cluster summary, with explicit random seeds and initialization settings.
+
+The chart and segment table above summarize the four-cluster solution. Campaign suggestions are hypotheses for validation with customer outcomes.
